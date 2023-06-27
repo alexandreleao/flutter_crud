@@ -1,6 +1,7 @@
 import 'package:crud_flutter/components/user_tile.dart';
 import 'package:crud_flutter/models/user.dart';
 import 'package:crud_flutter/provider/users.dart';
+import 'package:crud_flutter/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,7 +19,9 @@ class UserList extends StatelessWidget{
           IconButton(
           onPressed:() {
             // ignore: prefer_const_constructors
-          
+           Navigator.of(context).pushNamed(
+            AppRoutes.USER_FORM
+           );
           }, 
           // ignore: prefer_const_constructors
           icon:Icon(Icons.add),
