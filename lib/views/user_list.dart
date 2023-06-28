@@ -1,4 +1,5 @@
 import 'package:crud_flutter/components/user_tile.dart';
+// ignore: unused_import
 import 'package:crud_flutter/models/user.dart';
 import 'package:crud_flutter/provider/users.dart';
 import 'package:crud_flutter/routes/app_routes.dart';

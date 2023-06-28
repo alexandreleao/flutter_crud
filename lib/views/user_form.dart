@@ -9,8 +9,23 @@ class UserForm extends StatelessWidget {
   final _form = GlobalKey<FormState>();
   final Map <String, String> _formData = {};
 
+  void _loadFormData(User user) { 
+     if(user != null){
+      _formData['id'] = user.id;
+      _formData['name'] = user.name;
+      _formData['email'] = user.email;
+      _formData['avatarUrl'] = user.avatarUrl;
+     }
+      
+  }
+
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
+    final user = ModalRoute.of(context)!.settings.arguments as User;
+    // ignore: avoid_print
+    _loadFormData(user);
+    
      return Scaffold(
         appBar: AppBar(
           // ignore: prefer_const_constructors
@@ -45,6 +60,8 @@ class UserForm extends StatelessWidget {
           child: Column(
             children: <Widget>[
               TextFormField(
+                initialValue: _formData['name'],
+                // ignore: prefer_const_constructors
                 decoration: InputDecoration(labelText: 'Nome'),
                 validator: (value){
                   if(value == null || value.trim().isEmpty){
@@ -61,10 +78,14 @@ class UserForm extends StatelessWidget {
                 onSaved: (value) => _formData['name'] = value!,
               ),
                TextFormField(
+                initialValue: _formData['email'],
+                // ignore: prefer_const_constructors
                 decoration: InputDecoration(labelText: 'E-mail'), 
                   onSaved: (value) => _formData['email'] = value!,
               ),
                TextFormField(
+                initialValue: _formData['avatarUrl'],
+                // ignore: prefer_const_constructors
                 decoration: InputDecoration(labelText: 'URL do Avatar'),
                   onSaved: (value) => _formData['avatarUrl'] = value!,
               ),
