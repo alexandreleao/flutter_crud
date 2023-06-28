@@ -10,6 +10,7 @@ class UserForm extends StatelessWidget {
   final Map <String, String> _formData = {};
 
   void _loadFormData(User user) { 
+     // ignore: unnecessary_null_comparison
      if(user != null){
       _formData['id'] = user.id;
       _formData['name'] = user.name;

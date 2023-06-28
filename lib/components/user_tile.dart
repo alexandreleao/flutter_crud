@@ -1,6 +1,8 @@
 // ignore_for_file: unnecessary_null_comparison, prefer_const_constructors, duplicate_ignore
 
+import 'package:crud_flutter/provider/users.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../models/user.dart';
 import '../routes/app_routes.dart';
 
@@ -21,6 +23,7 @@ class UserTile extends StatelessWidget {
       leading: avatar,
       title: Text(user.name),
       subtitle: Text(user.email),
+      // ignore: sized_box_for_whitespace
       trailing: Container(
         width:100,
         child: Row(
@@ -38,7 +41,33 @@ class UserTile extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.delete),
               color: Colors.red,
-              onPressed: () {}, 
+              onPressed: () {
+                showDialog(context: context,
+                 builder: (ctx) => AlertDialog(
+                  title: Text('Excluir Usuário'),
+                  content: Text('Tem certeza???'),
+                  // ignore: prefer_const_literals_to_create_immutables
+                  actions:<Widget>[
+                    TextButton(
+                      child: Text('Não'),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      }, 
+                      
+                    ),
+                    TextButton(
+                      child: Text('Sim'),
+                      onPressed: () {
+                         Provider.of<Users>(context, listen: false).remove(user);
+                         Navigator.of(context).pop();
+                      }, 
+                    
+                    ),
+                  ],
+                 ),
+                );
+               
+              }, 
             ),
           ],
         ),
@@ -46,4 +75,3 @@ class UserTile extends StatelessWidget {
     );
   }
 }
-
